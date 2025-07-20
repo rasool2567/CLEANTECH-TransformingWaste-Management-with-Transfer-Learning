@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0fff0;
+        }
+        img {
+            width: 300px;
+            border: 2px solid #ccc;
+            margin-top: 20px;
+        }
+        .result-box {
+            border: 2px solid green;
+            padding: 20px;
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #e0f2f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Waste Classification Result</h1>
+
+    {% if prediction %}
+    <div class="result-box">
+        <p><strong>Class:</strong> {{ prediction }}</p>
+        <p><strong>Confidence:</strong> {{ confidence }}%</p>
+    </div>
+    <img src="{{ url_for('static', filename='assets/forms/uploads/' + image_file) }}" alt="Uploaded Image">
+    {% else %}
+    <p>No prediction result found. Please try again.</p>
+    {% endif %}
+
+    <br><br>
+    <a href="{{ url_for('index') }}">Try Another Image</a>
+</body>
+</html>
